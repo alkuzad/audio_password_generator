@@ -8,12 +8,12 @@ You can choose if you want to install liblame in your system (libmp3lame-dev on 
 
 ### without MP3 support
 
-1. `go get github.com/alkuzad/audio_password_generator`
+1. `go build`
 2. `./audio_password_generator -size 50`
 
 ###  with MP3 support
 
-1. `go get github.com/alkuzad/audio_password_generator -o lame`
+1. `go build -tags lame`
 2. `./audio_password_generator -mp3 -size 50`
 
 ### Compilation using Docker
