@@ -49,6 +49,8 @@ func main() {
 		}
 	}
 
+	addSuccess(&buffers)
+
 	mergedBuffer := mergeBuffers(buffers)
 
 	wavFilePath := filepath.Join(*dirFlag, "password.wav")
@@ -61,10 +63,18 @@ func main() {
 		if err := mp3.EncodeToMp3AndSave(fh, filepath.Join(*dirFlag, "password.mp3")); err != nil {
 			log.Fatalf("Error happened on wave->mp3 conversion\nerr: %s", err)
 		}
-
 	}
 
 	os.WriteFile(filepath.Join(*dirFlag, "password.txt"), []byte(input), 0644)
+}
+
+func addSuccess(buffers *[]*audio.IntBuffer ) error {
+	buffer, err := readWAVFile("sound/success.wav")
+	if err != nil {
+		return err
+	}
+	*buffers = append(*buffers, buffer)
+	return nil
 }
 
 func preloadWAVFiles() error {
